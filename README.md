@@ -6,7 +6,8 @@
 
 - `Python`版本：`3.9.13`
 
-- 借用`go-cqhttp`框架：下载网址：https://github.com/Mrs4s/go-cqhttp/releases，选择`windows`版本进行下载，配置好`QQ`账号和`http、post`处的地址设置【要与代码中的地址保持一致性】
+- 借用`go-cqhttp`框架：下载网址：https://github.com/Mrs4s/go-cqhttp/releases
+- 选择`windows`版本进行下载，配置好`QQ`账号和`http、post`处的地址设置【要与代码中的地址保持一致性】
 
   
 
