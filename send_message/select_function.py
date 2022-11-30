@@ -1,6 +1,6 @@
-from game.api.curriculum import send_class_table
-from game.api.weather_query import get_the_weather
-from game.api.juhe_api import *
+from api.curriculum import send_class_table
+from api.weather_query import get_the_weather
+from api.juhe_api import *
 
 
 def select_function(raw_message):

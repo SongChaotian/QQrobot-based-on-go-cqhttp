@@ -2,9 +2,9 @@ from flask import Flask, request
 from paddlenlp import Taskflow
 import threading
 
-from game.api.get_current_time import get_current_time
-from game.send_message.send_message import send_private_msg, send_group_msg
-from game.send_message.select_function import select_function
+from api.get_current_time import get_current_time
+from send_message.send_message import send_private_msg, send_group_msg
+from send_message.select_function import select_function
 
 # 人工智能，交互式闲聊对话，PaddleNLP
 # 基于PLATO-MINI，模型在十亿级别的中文对话数据上进行了预训练，闲聊场景对话效果显著。

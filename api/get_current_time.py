@@ -2,9 +2,9 @@ import datetime
 import time
 import threading
 
-from game.api.curriculum import send_class_table
-from game.api.weather_query import get_the_weather
-from game.send_message.send_message import send_private_msg,send_group_msg
+from api.curriculum import send_class_table
+from api.weather_query import get_the_weather
+from send_message.send_message import send_private_msg, send_group_msg
 
 """
 格式化成我们想要的日期：strftime（）
@@ -32,7 +32,7 @@ def get_current_time():
             send_group_msg(747668503, weather_message)
             time.sleep(1)
         elif now_time == "21:30:00":
-            tomorrow_schedule_message = send_class_table("课表 明天 21数三")
+            tomorrow_schedule_message = send_class_table("课表 明天 21数二")
             send_group_msg(747668503, tomorrow_schedule_message)
             time.sleep(1)
         time.sleep(0.5)  # 每0.2秒获取一次系统时钟
