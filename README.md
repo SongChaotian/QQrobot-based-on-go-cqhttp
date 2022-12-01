@@ -79,9 +79,8 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
     setx /M PATH "C:\Program Files\ffmpeg\bin;%PATH%"
      ```
    
-     自行将这个指令中的 `C:\Program Files` 替换成你的解压目录。
-
-
+   
+   - 自行将这个指令中的 `C:\Program Files` 替换成你的解压目录。
 
 ### 1.3 需求分析
 
