@@ -79,7 +79,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
 
 ### 1.3 Linux云服务器下环境部署
 
-####  1.2.1 服务端：
+####  1.3.1 服务端：
 
 1. 将代码clone到云服务器上
 
@@ -103,7 +103,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
 
 3. 输入`python3 server.py`指令运行服务器，此时会自动下载paddlenlp需要的工具集
 
-#### 1.2.2 go-cqhttp端：
+#### 1.3.2 go-cqhttp端：
 
 1. 下载：
 
