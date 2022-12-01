@@ -76,7 +76,104 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
    - 自行将这个指令中的 `C:\Program Files` 替换成你的解压目录。
 
 
-### 1.3 需求分析
+
+### 1.3 Linux云服务器下环境部署
+
+####  1.2.1 服务端：
+
+1. 将代码clone到云服务器上
+
+2. 安装`flask`、`requests`、`openpyxl`、`paddlepaddle`、`paddlenlp`模块。
+
+   - 将pip更新为最新版本`22.3.1`（该版本在我使用时为最新）`pip install --upgrade pip`
+   - 然后前三个模块比较小，直接`pip install`安装即可
+
+   ```shell
+   pip install flask
+   pip install requests
+   pip install openpyxl
+   ```
+
+   - 后面两个模块比较大，建议用如下两个指令，切换镜像来下载安装
+
+```shell
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlepaddle==2.4.0
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
+```
+
+3. 输入`python3 server.py`指令运行服务器，此时会自动下载paddlenlp需要的工具集
+
+#### 1.2.2 go-cqhttp端：
+
+1. 下载：
+
+   - 从[release](https://github.com/Mrs4s/go-cqhttp/releases)界面下载最新版本的go-cqhttp，建议下载`压缩文件`
+
+   - |    系统类型    |          可执行文件           |            压缩文件             |
+     | :------------: | :---------------------------: | :-----------------------------: |
+     | Intel 版 Macos |         Not available         | `go-cqhttp_darwin_amd64.tar.gz` |
+     |  M1 版 Macos   |         Not available         | `go-cqhttp_darwin_arm64.tar.gz` |
+     |  32 位 Linux   |         Not available         |  `go-cqhttp_linux_386.tar.gz`   |
+     |  64 位 Linux   |         Not available         | `go-cqhttp_linux_amd64.tar.gz`  |
+     |  arm64 Linux   |         Not available         | `go-cqhttp_linux_arm64.tar.gz`  |
+     |  armv7 Linux   |         Not available         | `go-cqhttp_linux_armv7.tar.gz`  |
+     | 32 位 Windows  |  `go-cqhttp_windows_386.exe`  |   `go-cqhttp_windows_386.zip`   |
+     | 64 位 Windows  | `go-cqhttp_windows_amd64.exe` |  `go-cqhttp_windows_amd64.zip`  |
+     | arm64 Windows  | `go-cqhttp_windows_arm64.exe` |  `go-cqhttp_windows_arm64.zip`  |
+     | armv7 Windows  | `go-cqhttp_windows_armv7.exe` |  `go-cqhttp_windows_armv7.zip`  |
+
+   - 以系统类型`64 位 Linux`为例，下载压缩文件`go-cqhttp_linux_amd64.tar.gz`
+
+2. 解压：Linux下在命令行中输入 `tar -zxvf [文件名]`
+
+3. 使用：
+
+   - 通过 SSH 连接到服务器，将下载好的压缩包上传至云服务器（我用的是本地的cmd，在本地安装ssh可以直连服务器，用scp远程传输文件），然后解压
+
+   - `cd`到解压目录
+
+   - 输入 `./go-cqhttp`, `Enter`运行 ,输入数字`0`，选择HTTP通信，按`Enter`后生成默认配置文件`config.yml`
+
+   - 参照[config.md](https://github.com/Mrs4s/go-cqhttp/blob/master/docs/config.md)修改配置文件`config.yml`
+
+   - ```shell
+     （主要是配置一下：QQ账号、密码、和监听端口号）
+     第4行：uin  # QQ账号
+     第5行：password  # 密码为空时使用扫码登录
+     第96行：address: 0.0.0.0:10087 # HTTP监听地址(用于接收消息)
+     取消第104行的注释
+     第104行：url: http://0.0.0.0:10088/  # 返向HTTP POST地址(用于发送消息)
+     ```
+
+   - 输入 `./go-cqhttp`,登录后即可使用，如果还需要使用程序中的发送视频的功能，还需要安装ffmpeg。
+
+4. 安装ffmpeg
+
+   Ubuntu / Debian :
+
+   终端执行：
+
+   ```shell
+   apt install -y ffmpeg
+   ```
+
+   Fedora / RHEL / CentOS :
+
+   根据 [Rpmfusion](https://rpmfusion.org/Configuration) 的文档配置源
+
+   终端执行
+
+   ```shell
+   # Centos7 及之前
+   yum install ffmpeg ffmpeg-devel 
+   
+   # CentOS8 及之后
+   dnf install ffmpeg ffmpeg-devel
+   ```
+
+   
+
+### 1.4 需求分析
 
 - 天气查询
 - 心灵鸡汤
@@ -90,7 +187,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
 
 
 
-### 1.4 参考资料
+### 1.5 参考资料
 
 - `go-cqhttp`: [go-cqhttp 帮助中心](https://docs.go-cqhttp.org/)
 
@@ -104,7 +201,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
 
   
 
-### 1.5 设计流程
+### 1.6 设计流程
 
 > 1. 需求分析
 > 2. 确定框架

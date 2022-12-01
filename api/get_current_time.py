@@ -26,13 +26,14 @@ from send_message.send_message import send_private_msg, send_group_msg
 def get_current_time():
     while True:
         now_time = datetime.datetime.now().strftime('%H:%M:%S')  # 获取当前日期和时间
-        print(now_time)
         if now_time == "08:00:00":
             weather_message = get_the_weather()
             send_group_msg(747668503, weather_message)
             time.sleep(1)
         elif now_time == "21:30:00":
             tomorrow_schedule_message = send_class_table("课表 明天 21数二")
+            send_group_msg(747668503, tomorrow_schedule_message)
+            tomorrow_schedule_message = send_class_table("课表 明天 19物一")
             send_group_msg(747668503, tomorrow_schedule_message)
             time.sleep(1)
         time.sleep(0.5)  # 每0.2秒获取一次系统时钟
