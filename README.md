@@ -70,17 +70,11 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
 4. 安装ffmpeg
 
    - 为了支持任意格式的语音发送, 你需要安装 ffmpeg 。
-
    - 从这里 [这里](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z) 下载，如果遇到下载速度缓慢的问题可以用 [这个源](https://downloads.go-cqhttp.org/ffmpeg-release-full.7z) ，并解压，将文件夹名称改成`ffmpeg`
-
    - 为 `bin` 这个文件夹添加环境变量，在 cmd 输入 **(不能使用 powershell）**
-
-   - ```shell
-    setx /M PATH "C:\Program Files\ffmpeg\bin;%PATH%"
-     ```
-   
-   
+   - `setx /M PATH "C:\Program Files\ffmpeg\bin;%PATH%"`
    - 自行将这个指令中的 `C:\Program Files` 替换成你的解压目录。
+
 
 ### 1.3 需求分析
 
