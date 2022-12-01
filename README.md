@@ -57,7 +57,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
 
    - 参照[config.md](https://github.com/Mrs4s/go-cqhttp/blob/master/docs/config.md)修改配置文件`config.yml`
 
-   - ```
+   - ```shell
      （主要是配置一下：QQ账号、密码、和监听端口号）
      第4行：uin  # QQ账号
      第5行：password  # 密码为空时使用扫码登录
@@ -65,10 +65,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
      取消第104行的注释
      第104行：url: http://0.0.0.0:10088/  # 返向HTTP POST地址(用于发送消息)
      ```
-   ```
-     
    - 双击运行脚本`go-cqhttp.bat`,登录后即可使用，如果还需要使用程序中的发送视频的功能，还需要安装ffmpeg。
-   ```
 
 4. 安装ffmpeg
 
@@ -79,7 +76,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
    - 为 `bin` 这个文件夹添加环境变量，在 cmd 输入 **(不能使用 powershell）**
 
    - ```shell
-  setx /M PATH "C:\Program Files\ffmpeg\bin;%PATH%"
+    setx /M PATH "C:\Program Files\ffmpeg\bin;%PATH%"
      ```
    
      自行将这个指令中的 `C:\Program Files` 替换成你的解压目录。
@@ -133,7 +130,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
 
 **一个人工智能--交互式闲聊对话**
 
-```
+```python
 # 基于PLATO-MINI，模型在十亿级别的中文对话数据上进行了预训练，闲聊场景对话效果显著。
 # 调用Taskflow工具集，智能对原始信息进行回复
 dialogue = Taskflow("dialogue")
@@ -143,7 +140,7 @@ s_message = " ".join(dialogue([raw_message]))
 
 **1. 私聊消息；2. 群聊消息；3. 智能回复**
 
-```
+```python
 app = Flask(__name__)  # 监听端口，获取QQ信息
 @app.route('/', methods=["POST"])  # 路由
 def post_data():
@@ -170,7 +167,7 @@ def post_data():
 
 **主入口**
 
-```
+```python
 def main():
     t = threading.Thread(target=get_current_time)
     t.start()
@@ -191,7 +188,7 @@ if __name__ == '__main__':
 
 **人为设置对消息的处理，并获取相应的结果**
 
-```
+```python
 def select_function(raw_message):
     s_message = ""
     if raw_message == "帮助" or raw_message == "help":
@@ -217,7 +214,7 @@ def select_function(raw_message):
 
 **告知用户我们的功能有哪些**
 
-```
+```python
 def get_help_message():
     help_message = "可根据所需功能，输入相应字段得到想到结果\n" \
                    "功能（1）：查询今日天气\n" \
@@ -246,7 +243,7 @@ def get_help_message():
 
 **传送私人消息**
 
-```
+```python
 def send_private_msg(user_id, message):
     send_private_msg_url = 'http://127.0.0.1:10087/send_private_msg'
     params = {
@@ -258,7 +255,7 @@ def send_private_msg(user_id, message):
 
 **传送群聊消息**
 
-```
+```python
 def send_group_msg(group_id, message):
     send_group_msg_url = 'http://127.0.0.1:10087/send_group_msg'
     params = {
@@ -276,7 +273,7 @@ def send_group_msg(group_id, message):
 
 > 接口：`https://v0.yiketianqi.com/api`，再人为获取我们需要的内容，此处用的是专业实况天气接口v62和 实时降水, 降雨量接口，此处只展示部分代码，读者可根据自身需求定义
 
-```
+```python
 def get_the_weather():
     weather_url = 'https://v0.yiketianqi.com/api'
     params_v62 = {
@@ -317,7 +314,7 @@ def get_the_weather():
 
 **课程类**
 
-```
+```python
 class Curriculum:
     # 星期几对应excel表中的哪一列
     week_to_char = {
@@ -390,7 +387,7 @@ class Curriculum:
 
 > 定义第一周的第一天的日期，获取日期，计算当前是第几周星期几，发送课表信息
 
-```
+```python
 def send_class_table(raw_message):
     week_list = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
     first_date = date(2022, 9, 5)  # 新学期第一周的第一天
@@ -421,7 +418,7 @@ def send_class_table(raw_message):
 
 **心灵鸡汤**
 
-```
+```python
 # 每日心灵鸡汤语录， API地址: https://www.juhe.cn/docs/api/id/669
 def get_chicken_soup():
     chicken_soup_url = 'https://apis.juhe.cn/fapig/soup/query'  # 聚合数据，API地址
@@ -441,7 +438,7 @@ def get_chicken_soup():
 
 **发送视频**
 
-```
+```python
 def get_video():
     video_url = 'http://106.52.78.177/wp-content/uploads/2022/10/1.mp4'
     video_msg = f"[CQ:video,file={video_url}]"
@@ -454,7 +451,7 @@ def get_video():
 
 > 此处设置的是一个自动发送消息的接口，将程序挂在服务器上，此处设置的是早上八点发送当天的天气情况，晚上9点发送明天的课表情况，读者可根据实际需求自定义，只需获取一下当前时间即可。
 >
-> ```
+> ```python
 > now_time = datetime.datetime.now().strftime('%H:%M:%S')  # 获取当前时间
 > ```
 
