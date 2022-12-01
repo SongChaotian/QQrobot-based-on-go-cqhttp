@@ -83,7 +83,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
 
 
 
-## 1.2 需求分析
+### 1.3 需求分析
 
 - 天气查询
 - 心灵鸡汤
@@ -97,7 +97,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
 
 
 
-## 1.3 参考资料
+### 1.4 参考资料
 
 - `go-cqhttp`: [go-cqhttp 帮助中心](https://docs.go-cqhttp.org/)
 
@@ -111,7 +111,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
 
   
 
-## 1.4 设计流程
+### 1.5 设计流程
 
 > 1. 需求分析
 > 2. 确定框架
