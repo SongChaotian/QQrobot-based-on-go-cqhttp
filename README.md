@@ -1,14 +1,87 @@
 # 😝Part_ONE 总体设计
 
-## 1.1 开发环境
+## 1 环境部署
 
-- 编译器：`PyCharm Community Edition 2022.2.3`
+### 1.1 开发环境
 
-- `Python`版本：`3.9.13`
+- 编译器：`PyCharm Community Edition 2022.2.3` , 下载网址：[PyCharm官网](https://www.jetbrains.com/pycharm/)
+- `Python`版本：`3.9.13`， 下载网址：[Python官网](https://www.python.org/)
+- 借用`go-cqhttp`框架：[go-cqhttp帮助中心](https://docs.go-cqhttp.org/) ， 选择`windows`版本进行下载，配置好`QQ`账号和`http、post`处的地址设置【要与代码中的地址保持一致性】
 
-- 借用`go-cqhttp`框架：下载网址：https://github.com/Mrs4s/go-cqhttp/releases 选择`windows`版本进行下载，配置好`QQ`账号和`http、post`处的地址设置【要与代码中的地址保持一致性】
 
-  
+
+### 1.2 Windows下环境部署
+
+####  1.2.1 服务端：
+
+1. 将代码clone到本地，用Pycharm打开
+2. 在Pycharm中为项目配置Python解释器， 然后需要在虚拟环境中安装`flask`、`requests`、`openpyxl`、`paddlepaddle`、`paddlenlp`模块。
+   - 先点击`文件`------>`设置` ----->`项目`----->`Python解释器`，点击`+`号将pip更新为最新版本`22.3.1`（该版本在我使用时为最新）
+   - 然后前三个模块比较小，直接鼠标悬浮在关键字下面，等Pycharm提示安装消息点击安装即可，
+   - 后面两个模块比较大，建议用如下两个指令，切换镜像来下载安装
+
+```shell
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlepaddle==2.4.0
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
+```
+
+#### 1.2.2 go-cqhttp端：
+
+1. 下载：
+
+   - 从[release](https://github.com/Mrs4s/go-cqhttp/releases)界面下载最新版本的go-cqhttp，建议下载`压缩文件`
+
+   - |    系统类型    |          可执行文件           |            压缩文件             |
+     | :------------: | :---------------------------: | :-----------------------------: |
+     | Intel 版 Macos |         Not available         | `go-cqhttp_darwin_amd64.tar.gz` |
+     |  M1 版 Macos   |         Not available         | `go-cqhttp_darwin_arm64.tar.gz` |
+     |  32 位 Linux   |         Not available         |  `go-cqhttp_linux_386.tar.gz`   |
+     |  64 位 Linux   |         Not available         | `go-cqhttp_linux_amd64.tar.gz`  |
+     |  arm64 Linux   |         Not available         | `go-cqhttp_linux_arm64.tar.gz`  |
+     |  armv7 Linux   |         Not available         | `go-cqhttp_linux_armv7.tar.gz`  |
+     | 32 位 Windows  |  `go-cqhttp_windows_386.exe`  |   `go-cqhttp_windows_386.zip`   |
+     | 64 位 Windows  | `go-cqhttp_windows_amd64.exe` |  `go-cqhttp_windows_amd64.zip`  |
+     | arm64 Windows  | `go-cqhttp_windows_arm64.exe` |  `go-cqhttp_windows_arm64.zip`  |
+     | armv7 Windows  | `go-cqhttp_windows_armv7.exe` |  `go-cqhttp_windows_armv7.zip`  |
+
+   - 以系统类型`64位Windows`为例，下载压缩文件`go-cqhttp_windows_amd64.zip`
+
+2. 解压：Windows下请使用自己熟悉的解压软件自行解压
+
+3. 使用：
+
+   - 双击`go-cqhttp_*.exe`,根据提示生成运行脚本
+   - 双击运行脚本，输入数字`0`，选择HTTP通信，按`Enter`后生成默认配置文件`config.yml`
+
+   - 参照[config.md](https://github.com/Mrs4s/go-cqhttp/blob/master/docs/config.md)修改配置文件`config.yml`
+
+   - ```
+     （主要是配置一下：QQ账号、密码、和监听端口号）
+     第4行：uin  # QQ账号
+     第5行：password  # 密码为空时使用扫码登录
+     第96行：address: 0.0.0.0:10087 # HTTP监听地址(用于接收消息)
+     第104行：url: http://0.0.0.0:10088/  # 返向HTTP POST地址(用于发送消息)
+     ```
+
+   - 双击运行脚本`go-cqhttp.bat`,登录后即可使用，如果还需要使用程序中的发送视频的功能，还需要安装ffmpeg。
+
+4. 安装ffmpeg
+
+   - 为了支持任意格式的语音发送, 你需要安装 ffmpeg 。
+
+   - 从这里 [这里](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z) 下载 并解压, 并为 `bin` 这个文件夹添加环境变量。
+
+   - 如果遇到下载速度缓慢的问题可以用 [这个源](https://downloads.go-cqhttp.org/ffmpeg-release-full.7z) 。
+
+   - 然后在 cmd 输入 **(不能使用 powershell）**
+
+   - ```shell
+     setx /M PATH "C:\Program Files\ffmpeg\bin;%PATH%"
+     ```
+
+     自行将这个指令中的 `C:\Program Files` 替换成你的解压目录。
+
+
 
 ## 1.2 需求分析
 
@@ -459,4 +532,3 @@ def get_video():
 **3. 致谢**
 
 > 感谢`Chaotian Song` 和 `OneWan`  在学习此项目期间的帮助！
-

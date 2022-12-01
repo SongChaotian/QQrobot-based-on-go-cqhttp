@@ -40,7 +40,7 @@ def post_data():
 def main():
     t = threading.Thread(target=get_current_time)
     t.start()
-    app.run(debug=True, host='127.0.0.1', port=10088)  # 此处的 host和 port对应上面 yml文件的设置
+    app.run(debug=True, host='0.0.0.0', port=10088)  # 此处的 host和 port对应上面 yml文件的设置
 
 
 if __name__ == '__main__':
