@@ -102,6 +102,16 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
 ```
 
 3. 输入`python3 server.py`指令运行服务器，此时会自动下载paddlenlp需要的工具集
+4. 如果启动发现接收不了消息，可能是服务器配置差的问题，建议可以把有关paddlenlp的代码注释掉，否则用不了
+
+```
+注释第2行 from paddlenlp import Taskflow
+注释第12行 dialogue = Taskflow("dialogue")
+注释第30-33行
+第34行往前缩进
+```
+
+
 
 #### 1.3.2 go-cqhttp端：
 
