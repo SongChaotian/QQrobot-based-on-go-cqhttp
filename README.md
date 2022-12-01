@@ -25,6 +25,8 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlepaddle==2.4.0
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
 ```
 
+3. 运行`server.py`文件即可，此时会自动下载paddlenlp需要的工具集
+
 #### 1.2.2 go-cqhttp端：
 
 1. 下载：
@@ -60,25 +62,26 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlenlp==2.4.4
      第4行：uin  # QQ账号
      第5行：password  # 密码为空时使用扫码登录
      第96行：address: 0.0.0.0:10087 # HTTP监听地址(用于接收消息)
+     取消第104行的注释
      第104行：url: http://0.0.0.0:10088/  # 返向HTTP POST地址(用于发送消息)
      ```
-
+   ```
+     
    - 双击运行脚本`go-cqhttp.bat`,登录后即可使用，如果还需要使用程序中的发送视频的功能，还需要安装ffmpeg。
+   ```
 
 4. 安装ffmpeg
 
    - 为了支持任意格式的语音发送, 你需要安装 ffmpeg 。
 
-   - 从这里 [这里](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z) 下载 并解压, 并为 `bin` 这个文件夹添加环境变量。
+   - 从这里 [这里](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z) 下载，如果遇到下载速度缓慢的问题可以用 [这个源](https://downloads.go-cqhttp.org/ffmpeg-release-full.7z) ，并解压，将文件夹名称改成`ffmpeg`
 
-   - 如果遇到下载速度缓慢的问题可以用 [这个源](https://downloads.go-cqhttp.org/ffmpeg-release-full.7z) 。
-
-   - 然后在 cmd 输入 **(不能使用 powershell）**
+   - 为 `bin` 这个文件夹添加环境变量，在 cmd 输入 **(不能使用 powershell）**
 
    - ```shell
-     setx /M PATH "C:\Program Files\ffmpeg\bin;%PATH%"
+  setx /M PATH "C:\Program Files\ffmpeg\bin;%PATH%"
      ```
-
+   
      自行将这个指令中的 `C:\Program Files` 替换成你的解压目录。
 
 
