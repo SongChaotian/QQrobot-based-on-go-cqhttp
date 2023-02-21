@@ -5,7 +5,7 @@ import re  # 正则表达式，匹配字符串
 
 def send_class_table(raw_message):
     week_list = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
-    first_date = date(2022, 9, 5)  # 新学期第一周的第一天
+    first_date = date(2023, 2, 13)  # 新学期第一周的第一天
     try:
         which_day = raw_message.split(' ')[1]
         if which_day == "今天":
@@ -61,7 +61,7 @@ class Curriculum:
         """
         第二步: 从文件中读取课表
         """
-        wb = load_workbook(f'static/{class_tag}.xlsx')  # 读取excel档案
+        wb = load_workbook(f'../static/{class_tag}.xlsx')  # 读取excel档案
         ws = wb.active  # 打开预设的工作表,等价于 -> ws = wb['Sheet1']
         class_num = 0  # 用来统计今天的课程数
         curriculum_list = []  # 用来储存curriculum对象
@@ -94,5 +94,5 @@ class Curriculum:
 
 
 if __name__ == '__main__':
-    data = send_class_table("课表 后天 21数三")
+    data = send_class_table("课表 今天 21数二")
     print(data)
