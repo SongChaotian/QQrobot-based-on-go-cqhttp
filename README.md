@@ -1,3 +1,6 @@
+### My Page View
+![Visitor Count](https://profile-counter.glitch.me/SongChaotian/count.svg)
+
 # 😝Part_ONE 总体设计
 
 ## 1 环境部署
